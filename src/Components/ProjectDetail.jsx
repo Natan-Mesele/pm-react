@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Badge, Button } from "@mui/material";
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 import InviteUserDialog from "./InviteUserDialog";
+import IssueList from "./IssueList";
+import ChatBox from "./ChatBox";
 
 function ProjectDetail() {
   const [openInviteDialog, setOpenInviteDialog] = useState(false);
@@ -24,7 +26,7 @@ function ProjectDetail() {
               Create Ecommerce Website Using React
             </h1>
           </div>
-          <div className="space-y-5 pb-10">
+          <div className="space-y-5 pb-10 text-sm">
             <p className="w-full md:max-w-lg lg:max-w-xl">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
             </p>
@@ -54,12 +56,27 @@ function ProjectDetail() {
                 Nati
               </Badge>
             </div>
+            
           </div>
+          <section>
+            <p className="py-5 border-b text-lg -tracking-wider">Tasks</p>
+            <div className="lg:flex md:flex gap-3 justify-between py-5">
+              <IssueList status="pending" title="Todo List"/>
+              <IssueList status="In-progress" title="In Progress"/>
+              <IssueList status="Done" title="Done"/>
+            </div>
+          </section>
         </section>
+        <div>
+          <ChatBox/>
+        </div>
       </div>
 
       {/* Invite User Dialog */}
-      <InviteUserDialog open={openInviteDialog} onClose={handleInviteDialogClose} />
+      <InviteUserDialog
+        open={openInviteDialog}
+        onClose={handleInviteDialogClose}
+      />
     </div>
   );
 }

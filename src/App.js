@@ -6,6 +6,7 @@ import Header from "./Components/Header";
 import Projectm from "./Components/Projectm";
 import Upgrade from "./Components/Upgrade";
 import ProjectList from "./Components/ProjectList";
+import ProjectDetail from "./Components/ProjectDetail";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/ProjectList" element={<ProjectList />} ></Route>
+          <Route path="/ProjectDetail" element={<ProjectDetail />} ></Route>
         </Routes>
       </div>
     </BrowserRouter>

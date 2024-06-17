@@ -37,7 +37,7 @@ function ProjectList() {
   return (
     <div className="relative flex gap-5 justify-center p-14">
       <section className="lg:w-[20rem] sticky top-10">
-        <Card className="p-5 max-h-[80vh] overflow-y-auto">
+        <Card className="p-5">
           <div className="flex justify-between">
             <p className="text-xl tracking-wider">Filter</p>
           </div>
@@ -50,17 +50,17 @@ function ProjectList() {
                 <FormControlLabel
                   value="option1"
                   control={<Radio />}
-                  label="Option 1"
+                  label="Front end"
                 />
                 <FormControlLabel
                   value="option2"
                   control={<Radio />}
-                  label="Option 2"
+                  label="Back end"
                 />
                 <FormControlLabel
                   value="option3"
                   control={<Radio />}
-                  label="Option 3"
+                  label="Full stack"
                 />
               </RadioGroup>
             </div>

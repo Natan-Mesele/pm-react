@@ -20,7 +20,7 @@ function IssueList({ title }) {
           <IssueCard />
         </div>
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-start">
         <Button
           onClick={() => setOpenIssueForm(true)}
           startIcon={<AddIcon />}

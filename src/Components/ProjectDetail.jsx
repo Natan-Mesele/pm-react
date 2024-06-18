@@ -56,7 +56,6 @@ function ProjectDetail() {
                 Nati
               </Badge>
             </div>
-            
           </div>
           <section>
             <p className="py-5 border-b text-lg -tracking-wider">Tasks</p>

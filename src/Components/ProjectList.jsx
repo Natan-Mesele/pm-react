@@ -7,7 +7,6 @@ import {
   FormControlLabel,
   Radio,
   TextField,
-  InputAdornment,
 } from "@mui/material";
 import SearchIcon from "@material-ui/icons/Search";
 import ProjectCard from "./ProjectCard";
@@ -19,15 +18,20 @@ function ProjectList() {
     "angular",
     "mysql",
     "java",
-    "mongobd",
+    "mongodb",
     "php",
   ];
-  const [selectedValue, setSelectedValue] = useState("");
-  const [textFieldValue, setTextFieldValue] = useState("");
-  const [keyword, setKeyword]=useState("");
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedTag, setSelectedTag] = useState("");
+  const [textFieldValue, setTextFieldValue] = useState("");
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const handleTagChange = (event) => {
+    setSelectedTag(event.target.value);
   };
 
   const handleTextFieldChange = (event) => {
@@ -35,30 +39,30 @@ function ProjectList() {
   };
 
   return (
-    <div className="relative flex gap-5 justify-center p-14">
-      <section className="lg:w-[20rem] sticky top-10">
+    <div className="flex gap-5 justify-center p-14">
+      <section className="lg:w-[20rem] sticky top-10 overflow-y-auto max-h-[90vh)]">
         <Card className="p-5">
           <div className="flex justify-between">
             <p className="text-xl tracking-wider">Filter</p>
           </div>
           <CardContent className="mt-5">
-            <div className="space-y-7">
+            <div className="">
               <Typography variant="h7" component="div" className="text-left">
                 Category
               </Typography>
-              <RadioGroup value={selectedValue} onChange={handleChange}>
+              <RadioGroup value={selectedCategory} onChange={handleCategoryChange} className="mt-6">
                 <FormControlLabel
-                  value="option1"
+                  value="front_end"
                   control={<Radio />}
                   label="Front end"
                 />
                 <FormControlLabel
-                  value="option2"
+                  value="back_end"
                   control={<Radio />}
                   label="Back end"
                 />
                 <FormControlLabel
-                  value="option3"
+                  value="full_stack"
                   control={<Radio />}
                   label="Full stack"
                 />
@@ -68,13 +72,14 @@ function ProjectList() {
               <Typography variant="h7" component="div" className="text-left">
                 Tag
               </Typography>
-              <RadioGroup value={selectedValue} onChange={handleChange}>
+              <RadioGroup value={selectedTag} onChange={handleTagChange}>
                 {tags.map((tag, index) => (
                   <FormControlLabel
                     key={index}
                     value={tag}
                     control={<Radio />}
                     label={tag}
+                    
                   />
                 ))}
               </RadioGroup>
@@ -97,12 +102,9 @@ function ProjectList() {
         </div>
         <div>
           <div className="space-y-5 min-h-[74vh]">
-            {
-              keyword?[1,1,1].map((item)=> <ProjectCard key={item}/>)
-              :[1,1,1,1,1].map((item) => (
-                <ProjectCard key={item}/>
-              ))
-            }
+            {[1, 1, 1, 1, 1].map((item) => (
+              <ProjectCard key={item} />
+            ))}
           </div>
         </div>
       </section>

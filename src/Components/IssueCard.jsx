@@ -3,9 +3,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import UserList from "./UserList"; 
+import { Link } from "react-router-dom";
 
 function IssueCard() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,10 +38,24 @@ function IssueCard() {
     console.log("Delete clicked");
   };
 
+  const handleUserMenuOpen = (event) => {
+    setUserMenuAnchorEl(event.currentTarget);
+  };
+
+  const handleUserMenuClose = () => {
+    setUserMenuAnchorEl(null);
+  };
+
+  const users = [
+    { name: "User 1" },
+    { name: "User 2" },
+    { name: "User 3" },
+  ];
+
   return (
     <div className="bg-white shadow-md rounded-md p-4">
       <div className="flex justify-between items-center">
-        <span className="font-medium">Create Navbar</span>
+        <Link to="/IssueDetails" className="font-medium">Create Navbar</Link>
         <div>
           <MoreVertIcon className="cursor-pointer" onClick={handleClick} />
           <Menu
@@ -58,8 +75,18 @@ function IssueCard() {
         <p className="text-gray-500">FBP - {1}</p>
         <div className="flex items-center gap-2">
           {[1].map((item) => (
-            <AccountCircleIcon key={item} className="cursor-pointer" />
+            <AccountCircleIcon 
+              key={item} 
+              className="cursor-pointer" 
+              onClick={handleUserMenuOpen} 
+            />
           ))}
+          <UserList
+            anchorEl={userMenuAnchorEl}
+            open={Boolean(userMenuAnchorEl)}
+            onClose={handleUserMenuClose}
+            users={users}
+          />
         </div>
       </div>
     </div>

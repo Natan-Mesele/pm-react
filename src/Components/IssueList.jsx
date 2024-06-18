@@ -16,9 +16,11 @@ function IssueList({ title }) {
     <div className="bg-white shadow-md rounded-lg p-6 space-y-4 flex flex-col">
       <div className="font-bold text-lg">{title}</div>
       <div className="flex-1 space-y-4 overflow-y-auto">
-        <div className="border border-gray-300 rounded-lg p-4">
-          <IssueCard />
-        </div>
+        {[1, 1, 1].map((item, index) => (
+          <div key={index} className="mb-4 last:mb-0">
+            <IssueCard />
+          </div>
+        ))}
       </div>
       <div className="flex justify-start">
         <Button

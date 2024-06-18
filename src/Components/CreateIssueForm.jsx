@@ -15,7 +15,7 @@ function CreateIssueForm({ open, onClose, onSubmit }) {
       <DialogTitle>Create New Issue</DialogTitle>
       <DialogContent>
         <TextField
-          label="Title"
+          label="Issue Name"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           fullWidth

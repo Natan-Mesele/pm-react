@@ -1,28 +1,47 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
 import { Button } from "@mui/material";
 import "./Auth.css";
 
-function Auth() {
-  const [active, setActive] = useState(true);
+const Auth = () => {
+  const [isLogin, setIsLogin] = useState(true);
+
+  const handleLogin = (data) => {
+    console.log("Login data:", data);
+  };
+
+  const handleSignup = (data) => {
+    console.log("Signup data:", data);
+  };
+
   return (
-    <div className="loginContainer">
-      <div className="box h-[30rem] w-[25rem]">
-        <div className="minContainer login">
-          <div className="loginBox w-full px-10 syace-y-5">
-            {active ? <Signup /> : <Login />}
-            <div>
-              <span>Already have account?</span>
-              <Button variant="ghost" onClick={() => setActive(!active)}>
-                {active ? "signin" : "signup"}
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div className="text-center mb-6">
+          {isLogin ? <h2 className="text-2xl font-bold">Login</h2> : <h2 className="text-2xl font-bold">Signup</h2>}
+        </div>
+        {isLogin ? <Login onLogin={handleLogin} /> : <Signup onSignup={handleSignup} />}
+        <div className="mt-4 text-center">
+          {isLogin ? (
+            <p className="text-gray-500">
+              Don't have an account?{" "}
+              <Button variant="text" onClick={() => setIsLogin(false)} className="text-indigo-600">
+                Signup
               </Button>
-            </div>
-          </div>
+            </p>
+          ) : (
+            <p className="text-gray-500">
+              Already have an account?{" "}
+              <Button variant="text" onClick={() => setIsLogin(true)} className="text-indigo-600">
+                Login
+              </Button>
+            </p>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Auth;

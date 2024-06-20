@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import NewProject from "./NewProject";
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { useDispatch, useSelector } from "react-redux";
+import { Logout } from "../Redux/Auth/Action";
 
 function Header() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const {auth} = useSelector(store=>store)
+  const dispatch = useDispatch()
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -25,7 +29,7 @@ function Header() {
   };
 
   const handleLogout = () => {
-    // Add logout logic here
+    dispatch(Logout())
     console.log("User logged out");
     handleMenuClose();
   };
@@ -76,6 +80,7 @@ function Header() {
         >
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
+        <p>{auth.user?.fullName}</p>
       </div>
       <NewProject open={dialogOpen} handleClose={handleDialogClose} />
     </header>

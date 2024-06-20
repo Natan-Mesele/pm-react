@@ -1,16 +1,21 @@
 import React, { useState } from "react";
+import {useDispatch} from "react-redux";
+import { register } from "../Redux/Auth/Action";
 
 const Signup = ({ onSignup }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
+    dispatch(register(e));
     e.preventDefault();
     onSignup({ fullName, email, password });
     setFullName("");
     setEmail("");
     setPassword("");
+    console.log("create project data", e);
   };
 
   return (

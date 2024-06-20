@@ -1,5 +1,6 @@
-import { API_BASE_URL } from "../config/api"
-import { GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType"
+import axios from "axios"
+import { API_BASE_URL } from "../../config/api"
+import { GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType"
 
 export const register=userData=>async(dispatch)=>{
     dispatch({type:REGISTER_REQUEST})
@@ -35,19 +36,18 @@ export const getUser=()=>async(dispatch)=>{
         const {data}=await axios.get(`${API_BASE_URL}/api/users/profile`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("jwt")}`
-            }
-        })
-        if(data.jwt){
-            localStorage.setItem("jwt", data.jwt)
-            dispatch({type:GET_USER_SUCCESS,payload:data})
-        }
-        console.log("register success", data)
+            },
+        });
+        
+            dispatch({type:GET_USER_SUCCESS,payload:data});
+        
+        console.log("user success", data)
     } catch (error) {
     console.log(error)
   }
 }
 
 export const Logout = () => async (dispatch)=> {
-    dispatch({type:LOGOUT})
+    dispatch({type: LOGOUT})
     localStorage.clear();
 }

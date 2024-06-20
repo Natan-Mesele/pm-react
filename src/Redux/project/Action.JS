@@ -1,5 +1,5 @@
 import { type } from "@testing-library/user-event/dist/cjs/utility/type.js";
-import api from "../config/api";
+import api from "@/config/api";
 import {
   ACCEPT_INVITATION_REQUEST,
   ACCEPT_INVITATION_SUCCESS,
@@ -7,6 +7,7 @@ import {
   CREATE_PROJECT_SUCCESS,
   DELETE_PROJECT_REQUEST,
   DELETE_PROJECT_SUCCESS,
+  FETCH_PROJECTS_REQUEST,
   FETCH_PROJECTS_SUCCESS,
   FETCH_PROJECT_BY_ID_REQUEST,
   FETCH_PROJECT_BY_ID_SUCCESS,
@@ -19,7 +20,7 @@ import {
 export const fetchProjects =
   ({ category, tag }) =>
   async (dispatch) => {
-    dispatch({ type: FETCH_PROJECTS_REQUEST });
+    dispatch({ type: FETCH_PROJECTS_REQUEST});
     try {
       const { data } = await api.get("/api/projects", {
         params: { category, tag },

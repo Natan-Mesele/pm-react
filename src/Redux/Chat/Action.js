@@ -1,5 +1,5 @@
 import * as actionTypes from "./ActionTypes";
-import api from "@/Api/api";
+import api from "@/config/api";
 
 export const sendMessage=(messageData) => {
     return async (dispatch) => {
